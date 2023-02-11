@@ -8,6 +8,7 @@
     <title>Dashboard</title>
     @include('libraries')
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app-creative.min.css') }}">
     @stack('css')
     <style>
         .bullet {
@@ -50,6 +51,10 @@
 
         .current .bullet {
             background: var(--bg_fff) !important;
+        }
+
+        td {
+            padding: .5rem .5rem !important;
         }
     </style>
 </head>

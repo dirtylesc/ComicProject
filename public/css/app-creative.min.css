@@ -12922,7 +12922,7 @@ body[data-leftbar-theme="dark"][data-leftbar-compact-mode="condensed"] .side-nav
 }
 
 .nav-user {
-    padding: calc(31px / 2) 20px calc(31px / 2) 57px !important;
+    padding: calc(45px / 2) 20px calc(45px / 2) 75px !important;
     text-align: left !important;
     position: relative;
     background-color: #fafbfd;
@@ -12938,8 +12938,9 @@ body[data-leftbar-theme="dark"][data-leftbar-compact-mode="condensed"] .side-nav
 }
 
 .nav-user .account-user-avatar img {
-    height: 32px;
-    width: 32px;
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
 }
 
 .nav-user .account-position {
