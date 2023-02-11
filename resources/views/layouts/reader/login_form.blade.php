@@ -1,5 +1,5 @@
 <div class="log_function d-flex align-items-center">
-    <div class="nothing" id="nothing"></div>
+    <div class="nothing" id="nothing_"></div>
     <div class="container">
         <div class="title">
             <div class="logo">
@@ -58,8 +58,8 @@
             <div class="soliate d-flex align-items-center justify-content-center">
                 <a href="{{ route('auth.redirect', 'github') }}" class="bg-gray-800"><i
                         class="fa-brands fa-github"></i></a>
-                <a href="{{ route('auth.redirect', 'facebook') }}" class="bg-gray-800"><i
-                        class="fa-brands fa-github ms-2"></i></a>
+                <a href="{{ route('auth.redirect', 'google') }}" class="bg-gray-800"><i
+                        class="fa-brands fa-google ms-3"></i></a>
             </div>
         </div>
         <div class="company_info">

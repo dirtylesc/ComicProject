@@ -4,6 +4,16 @@
 @endsection
 @section('content-wrapper')
     <div class="content-wrapper m-4">
+        <div class="form-group mb-3 position-relative col-2 px-0">
+            <label for="" class="fs16">Role:</label>
+            <select type="text" name="role" id="select-role" class="ms-2 col-12 form-control">
+                <option value="-1" selected>All</option>
+                @foreach ($roles as $key => $role)
+                    <option value="{{ $key }}" @if ((string) $key === $roleSeleted) selected @endif>{{ $role }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
         <table class="table">
             <thead>
                 <tr>
@@ -38,7 +48,7 @@
                             Phone: <a class="link-primary" href="tel:{{ $user->phone }}">{{ $user->phone }}</a>
                         </td>
                         <td scope="row">
-                            {{ $user->description }}
+                            {!! $user->description !!}
                         </td>
                         <td scope="row">
                             {{ $user->role }}
@@ -66,6 +76,23 @@
                 $('#form-delete').submit();
             }
         }
-        $(document).ready(function() {});
+        $(document).ready(function() {
+            $('#select-role').change(function() {
+                let role = $(this).val();
+                let q = $('#search').val();
+                window.location.href = `{{ route('admin.index') }}?role=${role}&q=${q}`;
+            });
+
+            $('#search').bind("enterKey", function(e) {
+                let q = $(this).val();
+                let role = $('#select-role').val();
+                window.location.href = `{{ route('admin.index') }}?role=${role}&q=${q}`;
+            });
+            $('#search').keyup(function(e) {
+                if (e.keyCode == 13) {
+                    $(this).trigger("enterKey");
+                }
+            });
+        });
     </script>
 @endpush

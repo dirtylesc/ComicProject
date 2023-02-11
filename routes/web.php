@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\TestController;
+use App\Http\Middleware\Localization;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +18,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect()->route('reader.index');
 });
+
 Route::get('test', [TestController::class, 'test'])->name('test');
 
 Route::get('error_404', function () {
     return view('clients.error404');
 })->name('error_404');
+
+Route::get('/language/{locale}', function ($locale) {
+    if (!in_array($locale, config('app.locales'))) {
+        $locale = config('app.fallback_locale');
+    }
+
+    session()->put('locale', $locale);
+
+    return redirect()->back()->withCookie(cookie('locale', $locale, 60 * 24 * 30));
+})->name('language');

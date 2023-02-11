@@ -3,21 +3,25 @@
         background-color: var(--bg_sidebar);
     }
 
-    label {
+    .dashboard_label {
         color: var(--c_label);
         font-size: 1.3rem;
     }
+
+    .currentSpan {
+        min-width: max-content;
+    }
 </style>
-<div class="side-bar col-md-2 position-absolute h-100">
+<div class="side-bar col-md-2_5 position-absolute h-100">
     <div class="app-header border-bottom">
         <div class="app-sidebar-logo mb-4 mx-4 pt-4 flex-shrink-0">
-            <a href="index.html" class="d-flex justify-content-center">
-                <h4 style="margin-bottom: 0;" class="fw600 lc1_5">Dirtylesc Company</h4>
+            <a href="{{ route('reader.index') }}" class="d-flex justify-content-center" style="color: black">
+                <h3 style="margin-bottom: 0;" class="fw600 lc1_5">Dirtylesc Company</h3>
             </a>
         </div>
     </div>
-    <div class="app-wrapper m-4">
-        <label for="" class="my-2 dt">
+    <div class="app-wrapper m-3">
+        <label for="" class="dashboard_label my-2 dt">
             <span class="menu-icon">
                 <span class="svg-icon svg-icon-5">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -30,16 +34,31 @@
             </span>
             DashBoard</label>
         <div class="menu-sub flex-column list-unstyled m-0 p-0">
-            <div class="menu-item py-2 my-2 flex-column @if ($currentRoute === 'users') current @endif">
-                <a href="" class="px-1 d-flex align-items-center text-decoration-none">
-                    <span class="bullet bullet-dot mx-3 "></span>
-                    <span class="currentSpan">Users</span>
-                </a>
-            </div>
+            @if (isSuperAdmin())
+                <div class="menu-item py-2 my-2 flex-column @if ($currentRoute === 'users') current @endif">
+                    <a href="{{ route('admin.index') }}" class="px-1 d-flex align-items-center text-decoration-none">
+                        <span class="bullet bullet-dot mx-3 "></span>
+                        <span class="currentSpan">Users</span>
+                    </a>
+                </div>
+            @endif
             <div class="menu-item py-2 my-2 @if ($currentRoute === 'comics') current @endif">
-                <a href="" class="px-1 d-flex align-items-center text-decoration-none">
+                <a href="{{ route('admin.comics.index') }}" class="px-1 d-flex align-items-center text-decoration-none">
                     <span class="bullet bullet-dot mx-3 "></span>
                     <span class="currentSpan">Comics</span>
+                </a>
+            </div>
+            <div class="menu-item py-2 my-2 flex-column @if ($currentRoute === 'teams') current @endif">
+                <a href="{{ route('admin.teams.index') }}" class="px-1 d-flex align-items-center text-decoration-none">
+                    <span class="bullet bullet-dot mx-3 "></span>
+                    <span class="currentSpan">Team Translator</span>
+                </a>
+            </div>
+            <div class="menu-item py-2 my-2 flex-column @if ($currentRoute === 'ranking') current @endif">
+                <a href="{{ route('admin.ranking.index') }}"
+                    class="px-1 d-flex align-items-center text-decoration-none">
+                    <span class="bullet bullet-dot mx-3 "></span>
+                    <span class="currentSpan">Ranking</span>
                 </a>
             </div>
         </div>
