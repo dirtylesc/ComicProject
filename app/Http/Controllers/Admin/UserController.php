@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\UserRoleEnum;
 use App\Http\Controllers\AdminController;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,6 +11,7 @@ class UserController extends AdminController
     private $model;
     public function __construct()
     {
+        // dd(auth()->check());
         $this->model = new User();
         $currentRoute = 'users';
 
@@ -25,18 +25,7 @@ class UserController extends AdminController
         $users = $this->model->query();
 
         if ($request->has('q')) {
-            $users = $users
-                ->where(function ($query) use ($request) {
-                    return $query->where('name', 'like', '%' . $request->get('q') . '%')
-                        ->orWhere('nickname', 'like', '%' . $request->get('q') . '%')
-                        ->orWhere('phone', 'like', '%' . $request->get('q') . '%')
-                        ->orWhere('email', 'like', '%' . $request->get('q') . '%');
-                });
-        }
-
-        $roleSeleted = $request->get('role');
-        if ($roleSeleted !== '-1' && $roleSeleted !== NULL) {
-            $users = $users->where('role', $roleSeleted);
+            $users = $users->where('name', 'like', '%' . $request->get('q') . '%');
         }
 
         $users = $users->select([
@@ -51,24 +40,17 @@ class UserController extends AdminController
             'description',
             'gender',
             'created_at'
-        ])->paginate();
+        ])
+            ->paginate();
 
         foreach ($users as $user) {
             $user->role = $user->role_name;
             $user->gender = $user->gender_name;
         }
 
-        $roles = titleArray(UserRoleEnum::getKeys(), '_', ' ');
-
-        return view('clients.admin.user.index', [
+        return view('clients.admin.index', [
             'users' => $users,
-            'roles' => $roles,
-            'roleSeleted' => $roleSeleted,
         ]);
-    }
-
-    public function show($id)
-    {
     }
 
     public function destroy($id)

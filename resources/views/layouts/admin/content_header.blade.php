@@ -1,9 +1,13 @@
 <div class="content-header d-flex align-items-center justify-content-between m-4 border-bottom"
-    style="padding-bottom: .7rem; margin-bottom: 0 !important;">
+    style="padding-bottom: .7rem">
     <h5 class="page-heading d-flex flex-column justify-content-center my-0">
-        <input type="text" id="search" class="form-control ps-5" style="width: 300px;" name="q"
-            value="{{ request()->get('q') }}" placeholder="Search..." data-kt-search-element="input">
-        <span class="position-absolute ms-2">
+        Dashboard
+        <!--begin::Description-->
+        <span class="page-desc small fw-semibold pt-1" style="color: #B5B0A1">@yield('small-text-content-heading')</span>
+        <!--end::Description-->
+    </h5>
+    <div class="form-group position-relative">
+        <span class="position-absolute mt-1 ms-2">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style=" color:#989486"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -14,84 +18,38 @@
                     fill="currentColor"></path>
             </svg>
         </span>
-        <!--begin::Description-->
-        {{-- <span class="page-desc small fw-semibold pt-1" style="color: #B5B0A1">@yield('small-text-content-heading')</span> --}}
-        <!--end::Description-->
-    </h5>
-    <div class="form-group position-relative mb-0">
+        <form>
+            <input type="text" id="search" class="form-control ps-5" style="width: 300px;" name="q"
+                value="{{ request()->get('q') }}" placeholder="{{ __('admin.search') }}..."
+                data-kt-search-element="input">
+        </form>
         <div class="d-flex align-items-center justify-content-between">
-            <li class="dropdown notification-list">
-                <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" href="#"
-                    role="button" aria-haspopup="false" aria-expanded="false">
-                    <span class="account-user-avatar">
-                        <img src="{{ asset(user()->avatar) }}" alt="user-image" class="rounded-circle" height="100">
-                    </span>
-                    <span>
-                        <span class="account-user-name">{{ user()->name }}</span>
-                        <span class="account-position">{{ user()->role ? 'Admin' : 'Super Admin' }}</span>
-                    </span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown"
-                    style="">
-                    <!-- item-->
-                    <div class=" dropdown-header noti-title">
-                        <h6 class="text-overflow m-0">Welcome !</h6>
-                    </div>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <i class="mdi mdi-account-circle mr-1"></i>
-                        <span>My Account</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <i class="mdi mdi-account-edit mr-1"></i>
-                        <span>Settings</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <i class="mdi mdi-lifebuoy mr-1"></i>
-                        <span>Support</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <i class="mdi mdi-lock-outline mr-1"></i>
-                        <span>Lock Screen</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item d-flex">
-                        <i class="mdi mdi-logout mr-1"></i>
-                        <form action="{{ route('logout') }}" method="GET" class="ms-1">
-                            @csrf
-                            <button class="btn p-0">Logout</button>
-                        </form>
-                    </a>
-
-                </div>
-            </li>
+            <form action="{{ route('logout') }}" method="POST" class="col-6">
+                @csrf
+                <button class="btn btn-warning mt-2 c_fff">Logout</button>
+            </form>
             {{-- <div class="dropdown notification-list topbar-dropdown col-6">
-                <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" id="topbar-languagedrop"
-                    href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa-solid fa-flag mr-1" style="font-size: 16px"></i><span
-                        class="align-middle">Languages</span>
-                    <i class="mdi mdi-chevron-down align-middle"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu"
-                    aria-labelledby="topbar-languagedrop">
-                    <a href="{{ route('language', 'en') }}" class="dropdown-item notify-item">
-                        <img src="{{ asset('storage/img_country/usa.png') }}" alt="user-image" class="mr-1"
-                            height="30"> <span class="align-middle">English</span>
-                    </a>
-                    <a href="{{ route('language', 'vi') }}" class="dropdown-item notify-item">
-                        <img src="{{ asset('storage/img_country/vietnam.png') }}" alt="user-image" class="mr-1"
-                            height="30"> <span class="align-middle">Vietnamese</span>
-                    </a>
-                </div>
-            </div> --}}
+                                <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown"
+                                    id="topbar-languagedrop" href="#" role="button" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-flag mr-1" style="font-size: 16px"></i><span
+                                        class="align-middle">Languages</span>
+                                    <i class="mdi mdi-chevron-down align-middle"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu"
+                                    aria-labelledby="topbar-languagedrop">
+                                    <a href="{{ route('language', 'en') }}" class="dropdown-item notify-item">
+                                        <img src="{{ asset('storage/img_country/usa.png') }}" alt="user-image"
+                                            class="mr-1" height="30"> <span
+                                            class="align-middle">English</span>
+                                    </a>
+                                    <a href="{{ route('language', 'vi') }}" class="dropdown-item notify-item">
+                                        <img src="{{ asset('storage/img_country/vietnam.png') }}" alt="user-image"
+                                            class="mr-1" height="30"> <span
+                                            class="align-middle">Vietnamese</span>
+                                    </a>
+                                </div>
+                            </div> --}}
         </div>
     </div>
 </div>

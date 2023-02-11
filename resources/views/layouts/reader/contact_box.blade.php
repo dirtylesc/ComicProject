@@ -6,7 +6,7 @@
                     <a href=""><img src="Images/logo.png" alt=""></a>
                 </div> -->
         <div class="title">
-            <p class="fs14 cl6">Contact Dirtylesc Company</p>
+            <p class="fs14 cl6">Contact Admin Dirtylesc</p>
         </div>
         <div class="function">
             <div class="email fs20">

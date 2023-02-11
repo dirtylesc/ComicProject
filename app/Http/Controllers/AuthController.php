@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\UserGenderEnum;
 use App\Enums\UserRoleEnum;
 use App\Http\Requests\ConfirmNewPasswordRequest;
 use App\Http\Requests\ProcessLoginRequest;
@@ -17,21 +16,12 @@ class AuthController extends Controller
 {
     use ResponseTrait;
 
-    public function checkLogin()
-    {
-        if (auth()->check()) {
-            return $this->successResponse([]);
-        }
-        return $this->errorResponse('');
-    }
-
     public function registering(RegisteringRequest $request)
     {
         try {
             $user = $request->validated();
 
-            $user['role'] = UserRoleEnum::READER;
-            $user['gender'] = UserGenderEnum::SECRECY;
+            $user['role'] = 3;
             $user['password'] = Hash::make($user['password']);
 
             $user = User::query()->create($user);
@@ -109,6 +99,8 @@ class AuthController extends Controller
     {
         $githubUser = Socialite::driver($provider)->user();
 
+        dd($githubUser);
+
         $user = User::query()
             ->where('email', $githubUser->getEmail())
             ->first();
@@ -123,11 +115,7 @@ class AuthController extends Controller
         $user->name = $githubUser->getName();
         $user->avatar = $githubUser->getAvatar();
         $user->nickname = $githubUser->getNickname();
-        $user->gender = UserGenderEnum::SECRECY;
-
-        if ($provider === 'github') {
-            $user->location = $githubUser['location'];
-        }
+        $user->location = $githubUser['location'];
         $user->save();
 
         auth()->login($user);

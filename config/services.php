@@ -41,10 +41,4 @@ return [
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
         'redirect' => env('CALLBACK_URI_FACEBOOK'),
     ],
-
-    'google' => [
-        'client_id' => env('GOODLE_CLIENT_ID'),
-        'client_secret' => env('GOODLE_CLIENT_SECRET'),
-        'redirect' => env('CALLBACK_URI') . '/google',
-    ],
 ];
