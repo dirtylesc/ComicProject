@@ -11,7 +11,44 @@ use BenSampo\Enum\Enum;
  */
 final class ComicStatusEnum extends Enum
 {
-    public const DANG_TIEN_HANH = 0;
-    public const HOAN_THANH = 1;
-    public const TAM_HOAN = 2;
+    public const ONGOING = 0;
+    public const COMPLETED = 1;
+    public const UNRELEASED = 2;
+    public const DEFERED = 3;
+    public const PENDING = 4;
+
+    public static function ArrayView()
+    {
+        return [
+            'Đang tiến hành' => self::ONGOING,
+            'Hoàn thành' => self::COMPLETED,
+            'Chưa phát hành' => self::UNRELEASED,
+            'Tạm hoãn' => self::DEFERED,
+            'Pending' => self::PENDING,
+        ];
+    }
+
+    public static function ArrayView1()
+    {
+        return [
+            'Ongoing' => self::ONGOING,
+            'Completed' => self::COMPLETED,
+            'Unreleased' => self::UNRELEASED,
+            'Defered' => self::DEFERED,
+            'Pending' => self::PENDING,
+        ];
+    }
+
+    public static function ArrayViewBrowse()
+    {
+        return [
+            'Ongoing' => self::ONGOING,
+            'Completed' => self::COMPLETED,
+        ];
+    }
+
+    public function getKeyByValue($value)
+    {
+        return array_search($value, self::ArrayView1(), true);
+    }
 }

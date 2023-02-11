@@ -9,18 +9,18 @@ use BenSampo\Enum\Enum;
  * @method static static OptionTwo()
  * @method static static OptionThree()
  */
-final class UserGenderEnum extends Enum
+final class BrowseSortEnum extends Enum
 {
-    const MALE = 0;
-    const FEMALE = 1;
-    const SECRECY = 2;
+    const POPULAR = 0;
+    const RATING = 1;
+    const TIME_UPDATED = 2;
 
     public static function ArrayView()
     {
         return [
-            'Male' => self::MALE,
-            'Female' => self::FEMALE,
-            'Secrecy' => self::SECRECY,
+            self::POPULAR => 'Popular',
+            self::RATING => 'Rating',
+            self::TIME_UPDATED => 'Time Updated',
         ];
     }
 }
