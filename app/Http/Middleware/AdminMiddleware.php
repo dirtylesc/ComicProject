@@ -19,7 +19,7 @@ class AdminMiddleware
     {
         if (!auth()->check()) {
             return redirect()->route('login');
-        } else if (user()->role === UserRoleEnum::SUPER_ADMIN || user()->role === UserRoleEnum::ADMIN) {
+        } else if (isAdmin() || isSuperAdmin()) {
             return $next($request);
         } else {
             return redirect()->route('error_404');
