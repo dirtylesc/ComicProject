@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\UserGenderEnum;
 use App\Enums\UserRoleEnum;
-use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -34,19 +32,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'deleted_at',
     ];
 
-    public function languages()
-    {
-        return $this->belongsToMany(
-            Language::class,
-            'user_languages',
-            'user_id',
-            'language_id'
-        );
-    }
-
     public function getGenderNameAttribute()
     {
-        if ($this->gender === UserGenderEnum::MALE) return 'Male';
+        if ($this->gender === 0) return 'Male';
 
         return 'Female';
     }

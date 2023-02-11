@@ -80,8 +80,7 @@ return [
     |
     */
 
-    'locale' => 'vn',
-    'locales' => ['en', 'vi'],
+    'locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -94,7 +93,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'vi',
+    'fallback_locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -107,7 +106,7 @@ return [
     |
     */
 
-    'faker_locale' => 'vi_VN',
+    'faker_locale' => 'en_US',
 
     /*
     |--------------------------------------------------------------------------
@@ -175,7 +174,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\TelescopeServiceProvider::class,
 
     ],
 
